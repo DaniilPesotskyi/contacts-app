@@ -1,3 +1,4 @@
+import ContactsForm from '../ContactsForm/ContactsForm';
 import ContactsItem from '../ContactsItem/ContactsItem';
 
 const testContact = {
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <ContactsItem contact={testContact}/>
+      <ContactsForm />
     </>
   );
 }
