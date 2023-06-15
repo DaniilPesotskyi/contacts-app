@@ -1,12 +1,16 @@
-import css from './App.module.css';
+import ContactsItem from '../ContactsItem/ContactsItem';
+
+const testContact = {
+  id: 1,
+  name: 'Daniil Pesotskyi',
+  number: '+380968936851',
+  type: 'stared',
+}
 
 function App() {
   return (
     <>
-      <header className={css.block}>
-        <p className={css.textMain}>REACT APP TEMPLATE</p>
-        <p className={css.textSecondary}>USE IT</p>
-      </header>
+      <ContactsItem contact={testContact}/>
     </>
   );
 }
