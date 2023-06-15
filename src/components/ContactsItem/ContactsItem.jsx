@@ -1,7 +1,7 @@
 import css from './ContactsItem.module.css';
 
 const ContactsItem = ({ contact }) => {
-  const { id, name, number, type } = contact;
+  const { name, number } = contact;
 
   return (
     <div className={css.contactItem}>
