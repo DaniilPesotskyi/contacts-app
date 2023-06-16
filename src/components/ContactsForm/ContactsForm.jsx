@@ -29,9 +29,6 @@ const ContactsForm = ({ close }) => {
   const onFormSubmit = e => {
     e.preventDefault();
 
-    console.log(e)
-    items.map(i => console.log(i.name));
-
     if (items.some(i => i.name === name)) {
       alert(`${name} is already exist!`);
       return;

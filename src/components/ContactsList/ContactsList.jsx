@@ -21,7 +21,7 @@ const ContactsList = () => {
         ADD
       </button>
       {isModalOpen && <ContactsForm close={onModalToggle} />}
-      {items
+      {items && items
         .filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
         .map(contact => (
           <ContactsItem key={contact.id} contact={contact} />
