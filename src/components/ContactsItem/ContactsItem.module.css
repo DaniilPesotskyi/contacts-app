@@ -68,6 +68,10 @@
     width: 40px;
     height: 40px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     border: 0;
     border-radius: 5px;
     background-color: rgb(228, 228, 228);

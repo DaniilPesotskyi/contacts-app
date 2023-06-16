@@ -1,9 +1,15 @@
-import ContactsList from '../ContactsList/ContactsList';
+import { Route, Routes } from 'react-router-dom';
+import Layout from '../Layout/Layout';
+import Contacts from '../../pages/Contacts/Contacts';
 
 function App() {
   return (
     <>
-      <ContactsList />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Contacts />} />
+        </Route>
+      </Routes>
     </>
   );
 }

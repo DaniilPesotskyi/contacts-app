@@ -1,14 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactsForm.module.css';
 import { useState } from 'react';
+import { getContactTypes, getContacts } from '../../redux/selectors';
+import { createContact } from '../../redux/slices/contactsSlice';
 
-const ContactsForm = ({close}) => {
+const ContactsForm = ({ close }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [type, setType] = useState('')
+  const [type, setType] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { contactTypes } = useSelector(getContactTypes);
+  const { items } = useSelector(getContacts);
 
-  const types = ['Personal', 'Work', 'Medicine', 'Gov'];
-
+  const dispatch = useDispatch();
   const onInputChange = e => {
     switch (e.currentTarget.name) {
       case 'name':
@@ -24,12 +28,29 @@ const ContactsForm = ({close}) => {
 
   const onFormSubmit = e => {
     e.preventDefault();
+
+    console.log(e)
+    items.map(i => console.log(i.name));
+
+    if (items.some(i => i.name === name)) {
+      alert(`${name} is already exist!`);
+      return;
+    }
+
+    dispatch(
+      createContact({
+        name,
+        number,
+        type,
+      })
+    );
+    close();
   };
-  
+
   const handleOptionClick = e => {
-    setIsDropdownOpen(false)
-    setType(e.currentTarget.textContent)
-  }
+    setIsDropdownOpen(false);
+    setType(e.currentTarget.textContent);
+  };
 
   return (
     <div className={css.backdrop}>
@@ -69,13 +90,23 @@ const ContactsForm = ({close}) => {
           </div>
           <div className={css.typeInputField}>
             <p className={css.typeLabel}>Type</p>
-            <div className={css.typeInput} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <div
+              className={css.typeInput}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
               <p className={css.typeValue}>{type}</p>
               {isDropdownOpen && (
                 <ul className={css.dropdownMenu}>
-                  {types.map(i => (
-                    <li className={css.dropdownMenuItem} onClick={handleOptionClick}>{i}</li>
-                  ))}
+                  {contactTypes &&
+                    contactTypes.map(i => (
+                      <li
+                        key={i.id}
+                        className={css.dropdownMenuItem}
+                        onClick={handleOptionClick}
+                      >
+                        {i.name}
+                      </li>
+                    ))}
                 </ul>
               )}
             </div>
