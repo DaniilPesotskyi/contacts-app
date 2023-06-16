@@ -1,9 +1,13 @@
 import css from './ContactsForm.module.css';
 import { useState } from 'react';
 
-const ContactsForm = () => {
+const ContactsForm = ({close}) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [type, setType] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const types = ['Personal', 'Work', 'Medicine', 'Gov'];
 
   const onInputChange = e => {
     switch (e.currentTarget.name) {
@@ -21,11 +25,16 @@ const ContactsForm = () => {
   const onFormSubmit = e => {
     e.preventDefault();
   };
+  
+  const handleOptionClick = e => {
+    setIsDropdownOpen(false)
+    setType(e.currentTarget.textContent)
+  }
 
   return (
     <div className={css.backdrop}>
       <div className={css.modalWindow}>
-        <button className={css.closeBtn} type="button"></button>
+        <button className={css.closeBtn} type="button" onClick={close}></button>
         <p className={css.formTitle}>New Contact</p>
         <form className={css.form} onSubmit={onFormSubmit} autoComplete="off">
           <div className={css.inputField}>
@@ -60,7 +69,16 @@ const ContactsForm = () => {
           </div>
           <div className={css.typeInputField}>
             <p className={css.typeLabel}>Type</p>
-            <div className={css.typeInput}></div>
+            <div className={css.typeInput} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              <p className={css.typeValue}>{type}</p>
+              {isDropdownOpen && (
+                <ul className={css.dropdownMenu}>
+                  {types.map(i => (
+                    <li className={css.dropdownMenuItem} onClick={handleOptionClick}>{i}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
           <button className={css.submitButton} type="submit">
             ADD CONTACT

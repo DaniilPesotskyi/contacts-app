@@ -5,6 +5,7 @@ const initialState = {
     error: null,
   },
   filter: '',
+  contactTypes: [],
 };
 
 export default initialState;
