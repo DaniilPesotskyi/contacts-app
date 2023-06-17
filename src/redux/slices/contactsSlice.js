@@ -6,6 +6,14 @@ const contactsSlice = createSlice({
 
   initialState,
   reducers: {
+    createType: (state, { payload }) => {
+      state.contactTypes.push({
+        id: nanoid(),
+        name: payload.name,
+        backgroundColor: payload.color,
+      });
+      console.log(state.contactTypes)
+    },
     createContact: (state, { payload }) => {
       state.contacts.items.push({
         id: nanoid(),
@@ -27,4 +35,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const { createContact, deleteContact } = contactsSlice.actions;
+export const { createContact, deleteContact, createType } = contactsSlice.actions;
