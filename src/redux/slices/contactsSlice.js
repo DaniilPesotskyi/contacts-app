@@ -23,9 +23,6 @@ const contactsSlice = createSlice({
         },
       };
     },
-    addActiveType: (state, { payload }) => {
-      state.activeTypes.push(payload)
-    },
   },
 });
 

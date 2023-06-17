@@ -8,7 +8,9 @@ const filterSlice = createSlice({
     setFilter: (state, { payload }) => {
       state.filter = payload;
     },
-    setCurrentType: (state, { payload }) => {},
+    setCurrentType: (state, { payload }) => {
+      state.activeTypes.push(payload)
+    },
   },
 });
 
