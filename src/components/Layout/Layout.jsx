@@ -3,9 +3,14 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <div>
-      <div style={{ maxWidth: 1530, margin: '0 auto'}}>
+      <header>
+        <div style={{ maxWidth: 1530, margin: '0 auto'}}>
+          
+        </div>
+      </header>
+      <main style={{ maxWidth: 1530, margin: '0 auto'}}>
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };
