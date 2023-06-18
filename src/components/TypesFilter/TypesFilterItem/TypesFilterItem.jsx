@@ -4,7 +4,7 @@ import { setActiveType } from '../../../redux/slices/filtersSlice';
 import { selectActiveTypes } from '../../../redux/selectors';
 
 const TypesFilterItem = ({ type }) => {
-  const { name, backgroundColor } = type;
+  const { name, color } = type;
   const activeTypes = useSelector(selectActiveTypes);
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const TypesFilterItem = ({ type }) => {
       onClick={() => onToggleActive(type)}
       type="button"
       className={css.filterButton}
-      style={{backgroundColor: activeTypes.includes(name) && backgroundColor}}
+      style={{backgroundColor: activeTypes.includes(name) && color}}
     >
       {name}
     </button>

@@ -3,14 +3,19 @@ import css from './TypesFilter.module.css';
 import { getContactTypes } from '../../redux/selectors';
 import TypesFilterItem from './TypesFilterItem/TypesFilterItem';
 import { clearActiveTypes } from '../../redux/slices/filtersSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TypesForm from './TypesForm/TypesForm';
+import { fetchTypes } from '../../redux/operations';
 
 const TypesFilter = () => {
   const { contactTypes } = useSelector(getContactTypes);
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTypes())
+  }, [dispatch])
 
   const onModalToggle = () => {
     setIsModalOpen(!isModalOpen)

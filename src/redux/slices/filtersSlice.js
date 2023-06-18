@@ -14,6 +14,7 @@ const filterSlice = createSlice({
         state.activeTypes.splice(typeIndex, 1);
         return;
       }
+
       state.activeTypes.push(payload.name);
     },
     clearActiveTypes: (state, { payload }) => {

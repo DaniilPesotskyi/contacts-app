@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import css from './TypesForm.module.css';
 import { useDispatch } from 'react-redux';
-import { createType } from '../../../redux/slices/contactsSlice';
+import { createType } from '../../../redux/operations';
 
 const TypesForm = ({close}) => {
   const [name, setName] = useState('');
@@ -50,7 +50,7 @@ const TypesForm = ({close}) => {
           type="text"
           name="color"
           value={color}
-          pattern="#[0-9a-fA-F]{6}"
+          pattern="#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
           placeholder="Color (#ffffff)"
           onChange={onInputChange}
           required

@@ -73,4 +73,13 @@
     background-color: #707070;
 
     color: #ffffff;
+
+    opacity: 1;
+    transition: background-color 150ms;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: #3f3f3f;
+    }
 }

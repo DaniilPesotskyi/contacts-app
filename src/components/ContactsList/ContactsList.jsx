@@ -1,20 +1,27 @@
 import css from './ContactsList.module.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ContactsForm from '../ContactsForm/ContactsForm';
 import ContactsItem from '../ContactsItem/ContactsItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getContacts,
   getFilter,
   selectActiveTypes,
 } from '../../redux/selectors';
+import { fetchContacts } from '../../redux/operations';
 
 const ContactsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { items } = useSelector(getContacts);
   const activeTypes = useSelector(selectActiveTypes);
   const { filter } = useSelector(getFilter);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+    console.log()
+  },[dispatch])
 
   const onModalToggle = () => {
     setIsModalOpen(!isModalOpen);
