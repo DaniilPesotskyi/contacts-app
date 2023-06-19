@@ -20,7 +20,6 @@ const ContactsList = () => {
 
   useEffect(() => {
     dispatch(fetchContacts())
-    console.log()
   },[dispatch])
 
   const onModalToggle = () => {
